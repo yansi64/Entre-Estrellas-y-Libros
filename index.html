@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entre Estrellas y Libros</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+      position: relative;
+      text-align: center;
+      padding: 80px 20px;
+      background-image: url("Libros1.jpg"); alt: Libros1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 300px;
+      max-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4em;
+      margin: 0;
+      color: #f3e8ff;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #ddd;
+    }
+    nav {
+      text-align: center;
+      background-color: #1b1b3a;
+      padding: 15px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #fceaff;
+      font-weight: bold;
+      margin: 0 15px;
+      padding: 8px 15px;
+      border: 2px solid transparent;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #c084fc;
+      color: #1b1b3a;
+      box-shadow: 0 0 10px #c084fc;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #fceaff;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .book-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      width: 100px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    .book-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #c084fc;
+    }
+    .galeria-sailor {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .galeria-sailor img {
+      width: 160px;
+      border-radius: 10px;
+      transition: transform 0.4s, box-shadow 0.4s;
+      box-shadow: 0 0 10px #ffd9fa;
+      cursor: pointer;
+    }
+    .galeria-sailor img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #ffb4ff;
+    }
+    .galeria-sailor .sailor-frase {
+      margin-top: 15px;
+      font-style: italic;
+      color: #ffd9fa;
+      font-size: 1.1em;
+      text-shadow: 0 0 8px #ffb4ff;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #1c1c3c;
+      color: #aaa;
+    }
+
+    .test-sailor {
+  max-width: 600px;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px #c084fc44;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.test-sailor .pregunta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.test-sailor label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #ffd9fa;
+}
+
+.test-sailor select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+}
+
+.test-sailor button {
+  margin-top: 15px;
+  background-color: #ffd9fa;
+  color: #2c2563;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.test-sailor button:hover {
+  background: #ffb4ff;
+  box-shadow: 0 0 10px #ffd9fa;
+}
+
+.galeria-sailor .sailor-grupo-img {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ffd9fa;
+  transition: transform 0.3s ease;
+}
+
+.galeria-sailor .sailor-grupo-img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px #ffb4ff;
+}
+.book-card h3 {
+  color: white;
+}
+
+/* Evita que cambie al hacer clic o seleccionarlas */
+.book-card:link h3,
+.book-card:visited h3,
+.book-card:hover h3,
+.book-card:active h3,
+.book-card:focus h3 {
+  color: white;
+  text-decoration: none;
+}
+.book-card:hover h3 {
+  text-shadow: 0 0 10px #ffd9fa;
+}
+
+.resultado-sailor {
+  text-align: center;
+  font-size: 1.3em;
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 12px;
+  display: none;
+  color: #fff;
+  box-shadow: 0 0 10px #c084fc66;
+}
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resultado-sailor.mostrar {
+  display: block;
+  animation: aparecerSuave 0.8s ease-out forwards;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Entre Estrellas y Libros</h1>
+    <p>Un rincón cósmico para perderse entre páginas y estrellas</p>
+  </header>
+
+  <nav>
+    <a href="#libros">Libros</a>
+    <a href="#luna">Rincón Lunar</a>
+    <a href="#sailor">Sailor Moon</a>
+  </nav>
+
+  <div class="section" id="libros">
+    <h2>📚 Biblioteca Estelar</h2>
+    <p>Haz clic en una letra para ver los autores y libros disponibles.</p>
+    <div class="card-container">
+      <a href="autores/A/" class="book-card"><h3>A</h3></a>
+      <a href="autores/B/" class="book-card"><h3>B</h3></a>
+      <a href="autores/C/" class="book-card"><h3>C</h3></a>
+      <a href="autores/D/" class="book-card"><h3>D</h3></a>
+      <a href="autores/E/" class="book-card"><h3>E</h3></a>
+      <a href="autores/F/" class="book-card"><h3>F</h3></a>
+      <a href="autores/G/" class="book-card"><h3>G</h3></a>
+      <a href="autores/H/" class="book-card"><h3>H</h3></a>
+      <a href="autores/I/" class="book-card"><h3>I</h3></a>
+      <a href="autores/J/" class="book-card"><h3>J</h3></a>
+      <a href="autores/K/" class="book-card"><h3>K</h3></a>
+      <a href="autores/L/" class="book-card"><h3>L</h3></a>
+      <a href="autores/M/" class="book-card"><h3>M</h3></a>
+      <a href="autores/N/" class="book-card"><h3>N</h3></a>
+      <a href="autores/O/" class="book-card"><h3>O</h3></a>
+      <a href="autores/P/" class="book-card"><h3>P</h3></a>
+      <a href="autores/Q/" class="book-card"><h3>Q</h3></a>
+      <a href="autores/R/" class="book-card"><h3>R</h3></a>
+      <a href="autores/S/" class="book-card"><h3>S</h3></a>
+      <a href="autores/T/" class="book-card"><h3>T</h3></a>
+      <a href="autores/U/" class="book-card"><h3>U</h3></a>
+      <a href="autores/V/" class="book-card"><h3>V</h3></a>
+      <a href="autores/W/" class="book-card"><h3>W</h3></a>
+      <a href="autores/X/" class="book-card"><h3>X</h3></a>
+      <a href="autores/Y/" class="book-card"><h3>Y</h3></a>
+      <a href="autores/Z/" class="book-card"><h3>Z</h3></a>
+    </div>
+  </div>
+
+  <div class="section" id="luna">
+    <h2>🌙 Rincón Lunar</h2>
+    <p>✨ ¿Sabías que...?</p>
+    <ul style="list-style: none; padding: 0; max-width: 600px; margin: auto;">
+      <li>🌖 La luna llena puede afectar el sueño y los estados de ánimo.</li>
+      <li>🌠 Se han encontrado moléculas de agua en la superficie lunar.</li>
+      <li>🌌 En Júpiter y Saturno hay lunas más grandes que el planeta Mercurio.</li>
+      <li>🌑 La luna rota al mismo ritmo que orbita la Tierra, por eso siempre vemos la misma cara.</li>
+      <li>🔭 Algunas estrellas que vemos ya no existen... ¡su luz aún viaja hacia nosotros!</li>
+    </ul>
+  </div>
+
+  <section id="sailor" class="section">
+    <h2>✨ Zona Sailor Moon</h2>
+    <div class="frases-sailor">
+      <p>🌙 “¡En nombre de la luna, te castigaré!”</p>
+      <p>💖 “El amor es la forma más poderosa de magia.”</p>
+      <p>🌟 “Cree en ti misma, incluso cuando nadie más lo haga.”</p>
+      <p>🪐 “Somos guardianas del amor y la justicia.”</p>
+    </div>
+
+    <h3>🌌 Galería de las Sailors</h3>
+    <div class="galeria-sailor">
+      <img src="Sailor Moon.jpg" alt="Sailor Moon">
+      <img src="Sailor Mercury.jpg" alt="Sailor Mercury">
+      <img src="Sailor Mars.jpg" alt="Sailor Mars">
+      <img src="Sailor Jupiter.jpg" alt="Sailor Jupiter">
+      <img src="Sailor Venus.jpg" alt="Sailor Venus">
+    
+      <!-- Imagen horizontal de las 5 juntas -->
+      <img src="SailorGrupo.jpg" alt="Sailors Unidas" class="sailor-grupo-img">
+    </div>
+    <p class="sailor-frase">💖 ¡Unidas por la justicia y el poder del amor! 💫</p>  
+
+ <h3>🔮 ¿Qué Sailor eres tú?</h3>
+<form id="testSailor" class="test-sailor">
+  <div class="pregunta">
+    <label>1. ¿Qué color te representa más?</label>
+    <select name="color">
+      <option value="rosa">Rosa</option>
+      <option value="azul">Azul</option>
+      <option value="rojo">Rojo</option>
+      <option value="verde">Verde</option>
+      <option value="amarillo">Amarillo</option>
+    </select>
+  </div>
+
+  <div class="pregunta">
+    <label>2. ¿Qué cualidad te define mejor?</label>
+    <select name="cualidad">
+      <option value="amorosa">Amorosa</option>
+      <option value="inteligente">Inteligente</option>
+      <option value="apasionada">Apasionada</option>
+      <option value="valiente">Valiente</option>
+      <option value="alegre">Alegre</option>
+    </select>
+  </div>
+
+  <div class="pregunta">
+    <label>3. ¿Qué planeta te atrae más?</label>
+    <select name="planeta">
+      <option value="luna">Luna</option>
+      <option value="mercurio">Mercurio</option>
+      <option value="marte">Marte</option>
+      <option value="jupiter">Júpiter</option>
+      <option value="venus">Venus</option>
+    </select>
+  </div>
+
+  <div class="pregunta">
+    <label>4. ¿Qué elegirías para una batalla mágica?</label>
+    <select name="arma">
+      <option value="tiara">Tiara Lunar</option>
+      <option value="burbuja">Burbujas de Agua</option>
+      <option value="fuego">Flechas de fuego</option>
+      <option value="trueno">Trueno celestial</option>
+      <option value="corazon">Cadena de amor</option>
+    </select>
+  </div>
+
+  <div class="pregunta">
+    <label>5. ¿Qué tipo de frase usarías?</label>
+    <select name="frase">
+      <option value="justicia">"¡Por el poder del amor y la justicia!"</option>
+      <option value="sabiduria">"El conocimiento es mi poder."</option>
+      <option value="pasion">"¡La pasión enciende mi fuego interior!"</option>
+      <option value="fuerza">"Nadie detiene a quien cree en sí mismo."</option>
+      <option value="brillo">"Mi luz brilla en la oscuridad."</option>
+    </select>
+  </div>
+
+  <button type="submit">✨ Ver mi Sailor ✨</button>
+</form>
+
+<div id="resultadoSailor" class="resultado-sailor"></div>
+
+
+
+    <script>
+document.getElementById("testSailor").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const valores = {
+    color: this.color.value,
+    cualidad: this.cualidad.value,
+    planeta: this.planeta.value,
+    arma: this.arma.value,
+    frase: this.frase.value
+  };
+
+  let resultado = "✨ Eres... ";
+
+  if (valores.color === "rosa" || valores.planeta === "luna") {
+    resultado += "¡Sailor Moon! 🌙 La guardiana del amor y la justicia.";
+  } else if (valores.color === "azul" || valores.planeta === "mercurio") {
+    resultado += "¡Sailor Mercury! 💧 Inteligente, serena y sabia.";
+  } else if (valores.color === "rojo" || valores.planeta === "marte") {
+    resultado += "¡Sailor Mars! 🔥 Apasionada y espiritual.";
+  } else if (valores.color === "verde" || valores.planeta === "jupiter") {
+    resultado += "¡Sailor Jupiter! ⚡ Valiente, fuerte y amorosa.";
+  } else if (valores.color === "amarillo" || valores.planeta === "venus") {
+    resultado += "¡Sailor Venus! 💛 Radiante, alegre y carismática.";
+  } else {
+    resultado += "una Sailor única y especial ✨";
+  }
+
+  const resultadoDiv = document.getElementById("resultadoSailor");
+  resultadoDiv.innerHTML = resultado;
+  resultadoDiv.classList.add("mostrar");
+});
+
+
+    </script>
+
+
+  <footer>
+    Hecho con 💜 para una lectora estelar | Día del Libro 2025
+  </footer>
+</body>
+</html>
